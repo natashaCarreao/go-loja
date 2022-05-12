@@ -3,11 +3,14 @@ package main
 import (
 	"html/template"
 	"net/http"
+	_"github.com/lib/pq"
 )
 
 var temp = template.Must(template.ParseGlob("templates/*.html"))
 
 func main() {
+	db := conectaBanco()
+	defer db.Close()
 	http.HandleFunc("/", index)
 	http.ListenAndServe(":8000", nil)
 }
@@ -25,4 +28,15 @@ type Produto struct {
 	Nome, Descricao string
 	Preco           float64
 	Quantidade      int
+}
+
+func conectaBanco() *sql.DB {
+	conexao := "user=postgres dbname=goloja password=postgres host=postgres-db sslmode=desable"
+	db, err sql.Open("postgres", conexao)
+
+	if err != nil {
+		panic(err.Error())
+	}
+
+	return db
 }
