@@ -1,4 +1,4 @@
-module github.com/natashaCarreao/go-loja
+module github.com/go-loja
 
 go 1.18
 

@@ -3,8 +3,8 @@ package main
 import (
 	"net/http"
 
+	"github.com/go-loja/routes"
 	_ "github.com/lib/pq"
-	"github.com/natashacastello/go-loja/routes"
 )
 
 func main() {
