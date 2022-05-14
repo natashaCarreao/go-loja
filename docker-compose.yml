@@ -1,0 +1,21 @@
+version: "3.1"
+
+services:
+  postgres-db:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: golojadb
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - 15432:5432
+  pgadmin:
+    image: 'dpage/pgadmin4'
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "goloja@teste.com.br"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - 15433:80
+    depends_on:
+      - postgres-db
